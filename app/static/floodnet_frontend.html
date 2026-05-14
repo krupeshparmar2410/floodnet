@@ -542,7 +542,7 @@
     /* ─── Card Grid ─────────────────────────────────────────────── */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 3rem;
     }
@@ -809,7 +809,7 @@
     /* ─── Use Cases ─────────────────────────────────────────────── */
     .usecase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-top: 3rem;
     }
@@ -1528,6 +1528,7 @@
         grid-template-columns: 1fr;
       }
 
+      .usecase-grid,
       .card-grid {
         grid-template-columns: 1fr;
       }
