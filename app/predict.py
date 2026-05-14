@@ -67,11 +67,33 @@ def predict_classification(img_bgr):
         pred  = TASK1_MODEL.predict([feat])[0]
         proba = TASK1_MODEL.predict_proba([feat])[0]
 
+        # ✅ UNCERTAINTY LOGIC
+        CONF_THRESHOLD = 0.65  # Best value: Requires top prediction to be > 65%
+        DIFF_THRESHOLD = 0.20  # Best value: Requires clear gap between top 2 classes (e.g., 60/40 is the minimum)
+        
+        max_prob = float(np.max(proba))
+        
+        if len(proba) >= 2:
+            sorted_probs = np.sort(proba)
+            prob_diff = float(sorted_probs[-1] - sorted_probs[-2])
+        else:
+            prob_diff = 1.0
+
+        is_uncertain = (max_prob < CONF_THRESHOLD) or (prob_diff < DIFF_THRESHOLD)
+        
+        if is_uncertain:
+            label = "Uncertain"
+            flooded = False
+        else:
+            label = "Flooded" if pred == 0 else "Non-Flooded"
+            flooded = bool(pred == 0)
+
         return {
-            "label":      "Flooded" if pred==0 else "Non-Flooded",
-            "confidence": round(float(proba[pred])*100, 2),
-            "class_idx":  int(pred),
-            "flooded":    bool(pred==0)
+            "label":      label,
+            "confidence": round(max_prob * 100, 2),
+            "class_idx":  int(pred) if not is_uncertain else -1,
+            "flooded":    flooded,
+            "uncertain":  bool(is_uncertain)
         }
 
     except Exception as e:
