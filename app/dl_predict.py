@@ -7,6 +7,7 @@ and an optional ImageNet pre-filter to reject non-aerial images.
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.applications import MobileNetV2
+# pyrefly: ignore [missing-import]
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input as mobilenet_preprocess
 from tensorflow.keras.applications.mobilenet_v2 import decode_predictions
 import cv2

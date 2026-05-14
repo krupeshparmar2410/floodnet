@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet" />
 
   <!-- Chart.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -16,43 +19,51 @@
   <style>
     /* ─── CSS Variables ─────────────────────────────────────────── */
     :root {
-      --forest-dark:   #0b1f13;
-      --forest-deep:   #142b1c;
-      --forest-mid:    #1e4229;
-      --forest-sage:   #2e6b42;
-      --forest-light:  #4a9660;
-      --forest-mist:   #a8ccb5;
-      --forest-pale:   #d6ead0;
-      --cream:         #f5f0e6;
-      --parchment:     #ede5d0;
-      --gold:          #c4a43a;
-      --gold-light:    #e0c46a;
-      --earth:         #7a5c38;
-      --water:         #1b6e8f;
-      --water-light:   #2a9fc0;
-      --danger:        #b03030;
-      --danger-light:  #e05050;
-      --success:       #2d7a40;
+      --forest-dark: #0b1f13;
+      --forest-deep: #142b1c;
+      --forest-mid: #1e4229;
+      --forest-sage: #2e6b42;
+      --forest-light: #4a9660;
+      --forest-mist: #a8ccb5;
+      --forest-pale: #d6ead0;
+      --cream: #f5f0e6;
+      --parchment: #ede5d0;
+      --gold: #c4a43a;
+      --gold-light: #e0c46a;
+      --earth: #7a5c38;
+      --water: #1b6e8f;
+      --water-light: #2a9fc0;
+      --danger: #b03030;
+      --danger-light: #e05050;
+      --success: #2d7a40;
       --success-light: #46b360;
-      --text-dark:     #111a14;
-      --text-mid:      #2a4030;
-      --text-light:    #5a7a62;
-      --white:         #ffffff;
-      --shadow-green:  rgba(14, 45, 22, 0.25);
-      --shadow-deep:   rgba(0, 0, 0, 0.4);
+      --text-dark: #111a14;
+      --text-mid: #2a4030;
+      --text-light: #5a7a62;
+      --white: #ffffff;
+      --shadow-green: rgba(14, 45, 22, 0.25);
+      --shadow-deep: rgba(0, 0, 0, 0.4);
 
-      --radius-sm:  6px;
-      --radius-md:  12px;
-      --radius-lg:  20px;
-      --radius-xl:  32px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
 
       --transition: 0.3s ease;
     }
 
     /* ─── Reset & Base ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Lora', Georgia, serif;
@@ -63,32 +74,66 @@
       line-height: 1.7;
     }
 
-    h1, h2, h3, h4 {
+    h1,
+    h2,
+    h3,
+    h4 {
       font-family: 'Playfair Display', Georgia, serif;
       line-height: 1.2;
     }
 
-    img { max-width: 100%; display: block; }
-    a   { text-decoration: none; color: inherit; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     /* ─── Scrollbar ─────────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--forest-dark); }
-    ::-webkit-scrollbar-thumb { background: var(--forest-sage); border-radius: 3px; }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--forest-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--forest-sage);
+      border-radius: 3px;
+    }
 
     /* ─── Page Sections ─────────────────────────────────────────── */
-    .page { display: none; animation: fadeIn 0.5s ease; }
-    .page.active { display: block; }
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ─── Navbar ────────────────────────────────────────────────── */
     .navbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -175,6 +220,7 @@
       cursor: pointer;
       padding: 4px;
     }
+
     .nav-toggle span {
       display: block;
       width: 24px;
@@ -205,9 +251,9 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(30,66,41,0.6)  0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 80%,  rgba(27,110,143,0.2) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 10% 90%,  rgba(196,164,58,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30, 66, 41, 0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(27, 110, 143, 0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 10% 90%, rgba(196, 164, 58, 0.1) 0%, transparent 50%),
         linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-deep) 100%);
     }
 
@@ -219,29 +265,48 @@
       opacity: 0.18;
       animation: orbFloat 12s ease-in-out infinite;
     }
+
     .hero-orb-1 {
-      width: 500px; height: 500px;
+      width: 500px;
+      height: 500px;
       background: var(--forest-sage);
-      top: -100px; left: -100px;
+      top: -100px;
+      left: -100px;
       animation-delay: 0s;
     }
+
     .hero-orb-2 {
-      width: 400px; height: 400px;
+      width: 400px;
+      height: 400px;
       background: var(--water);
-      bottom: -50px; right: -100px;
+      bottom: -50px;
+      right: -100px;
       animation-delay: -4s;
     }
+
     .hero-orb-3 {
-      width: 300px; height: 300px;
+      width: 300px;
+      height: 300px;
       background: var(--gold);
-      top: 50%; right: 20%;
+      top: 50%;
+      right: 20%;
       animation-delay: -8s;
     }
 
     @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33%       { transform: translate(30px, -40px) scale(1.05); }
-      66%       { transform: translate(-20px, 20px) scale(0.97); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(30px, -40px) scale(1.05);
+      }
+
+      66% {
+        transform: translate(-20px, 20px) scale(0.97);
+      }
     }
 
     .hero-content {
@@ -278,8 +343,17 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.4; transform: scale(0.6); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.6);
+      }
     }
 
     .hero-title {
@@ -351,7 +425,7 @@
     }
 
     .btn-outline:hover {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       border-color: rgba(213, 205, 188, 0.6);
       transform: translateY(-2px);
     }
@@ -401,7 +475,9 @@
       transition: var(--transition);
     }
 
-    .stat-item:hover { background: var(--forest-deep); }
+    .stat-item:hover {
+      background: var(--forest-deep);
+    }
 
     .stat-number {
       font-family: 'Playfair Display', serif;
@@ -451,7 +527,10 @@
       margin-bottom: 1.2rem;
     }
 
-    .section-title .italic { font-style: italic; color: var(--gold); }
+    .section-title .italic {
+      font-style: italic;
+      color: var(--gold);
+    }
 
     .section-intro {
       font-size: 1.05rem;
@@ -481,7 +560,9 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--forest-sage), transparent);
       opacity: 0;
@@ -491,10 +572,12 @@
     .card:hover {
       border-color: rgba(74, 150, 96, 0.35);
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .card:hover::before { opacity: 1; }
+    .card:hover::before {
+      opacity: 1;
+    }
 
     .card-icon {
       width: 52px;
@@ -507,10 +590,21 @@
       margin-bottom: 1.2rem;
     }
 
-    .card-icon-green  { background: rgba(46,107,66,0.25); }
-    .card-icon-blue   { background: rgba(27,110,143,0.25); }
-    .card-icon-gold   { background: rgba(196,164,58,0.2); }
-    .card-icon-earth  { background: rgba(122,92,56,0.25); }
+    .card-icon-green {
+      background: rgba(46, 107, 66, 0.25);
+    }
+
+    .card-icon-blue {
+      background: rgba(27, 110, 143, 0.25);
+    }
+
+    .card-icon-gold {
+      background: rgba(196, 164, 58, 0.2);
+    }
+
+    .card-icon-earth {
+      background: rgba(122, 92, 56, 0.25);
+    }
 
     .card-title {
       font-family: 'Playfair Display', serif;
@@ -600,7 +694,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(74,150,96,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle at 50% 0%, rgba(74, 150, 96, 0.1) 0%, transparent 70%);
     }
 
     .why-big-number {
@@ -647,9 +741,11 @@
     .model-card::after {
       content: '';
       position: absolute;
-      bottom: 0; right: 0;
-      width: 150px; height: 150px;
-      background: radial-gradient(circle, rgba(196,164,58,0.07) 0%, transparent 70%);
+      bottom: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(196, 164, 58, 0.07) 0%, transparent 70%);
     }
 
     .model-tag {
@@ -664,15 +760,15 @@
     }
 
     .model-tag-classification {
-      background: rgba(46,107,66,0.25);
+      background: rgba(46, 107, 66, 0.25);
       color: var(--forest-light);
-      border: 1px solid rgba(46,107,66,0.4);
+      border: 1px solid rgba(46, 107, 66, 0.4);
     }
 
     .model-tag-segmentation {
-      background: rgba(27,110,143,0.25);
+      background: rgba(27, 110, 143, 0.25);
       color: var(--water-light);
-      border: 1px solid rgba(27,110,143,0.4);
+      border: 1px solid rgba(27, 110, 143, 0.4);
     }
 
     .model-card-title {
@@ -733,7 +829,10 @@
       transform: translateY(-3px);
     }
 
-    .usecase-emoji { font-size: 2rem; margin-bottom: 0.75rem; }
+    .usecase-emoji {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
 
     .usecase-title {
       font-family: 'Playfair Display', serif;
@@ -761,7 +860,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(8px);
       z-index: 2000;
       align-items: center;
@@ -770,7 +869,9 @@
       animation: fadeIn 0.25s ease;
     }
 
-    .modal-overlay.open { display: flex; }
+    .modal-overlay.open {
+      display: flex;
+    }
 
     .modal-box {
       background: var(--forest-deep);
@@ -781,22 +882,31 @@
       width: 100%;
       text-align: center;
       position: relative;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
       animation: modalSlideIn 0.3s ease;
     }
 
     @keyframes modalSlideIn {
-      from { opacity: 0; transform: scale(0.92) translateY(20px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
     .modal-close {
       position: absolute;
-      top: 1rem; right: 1rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      width: 34px; height: 34px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -807,7 +917,7 @@
     }
 
     .modal-close:hover {
-      background: rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.12);
       color: var(--cream);
     }
 
@@ -842,9 +952,9 @@
 
     .modal-option:hover {
       border-color: var(--forest-sage);
-      background: rgba(46,107,66,0.2);
+      background: rgba(46, 107, 66, 0.2);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     .modal-option-icon {
@@ -889,7 +999,9 @@
       margin-bottom: 1.5rem;
     }
 
-    .predict-back:hover { color: var(--gold); }
+    .predict-back:hover {
+      color: var(--gold);
+    }
 
     .predict-title {
       font-family: 'Playfair Display', serif;
@@ -936,7 +1048,10 @@
       height: 100%;
     }
 
-    .upload-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .upload-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
 
     .upload-title {
       font-family: 'Playfair Display', serif;
@@ -979,7 +1094,9 @@
       gap: 0.6rem;
     }
 
-    .panel-header-icon { font-size: 1rem; }
+    .panel-header-icon {
+      font-size: 1rem;
+    }
 
     .panel-header-title {
       font-family: 'Playfair Display', serif;
@@ -999,7 +1116,9 @@
       display: none;
     }
 
-    .image-preview.shown { display: block; }
+    .image-preview.shown {
+      display: block;
+    }
 
     .preview-placeholder {
       aspect-ratio: 4/3;
@@ -1014,7 +1133,11 @@
       font-size: 0.9rem;
     }
 
-    .preview-placeholder .ph-icon { font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.5; }
+    .preview-placeholder .ph-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
 
     /* Analyse Button */
     .analyse-btn-wrap {
@@ -1034,7 +1157,9 @@
       text-align: center;
     }
 
-    .spinner-wrap.shown { display: flex; }
+    .spinner-wrap.shown {
+      display: flex;
+    }
 
     .spinner {
       width: 52px;
@@ -1045,7 +1170,11 @@
       animation: spin 0.8s linear infinite;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     .spinner-text {
       font-size: 0.9rem;
@@ -1058,10 +1187,21 @@
     }
 
     @keyframes dots {
-      0%   { content: ''; }
-      33%  { content: '.'; }
-      66%  { content: '..'; }
-      100% { content: '...'; }
+      0% {
+        content: '';
+      }
+
+      33% {
+        content: '.';
+      }
+
+      66% {
+        content: '..';
+      }
+
+      100% {
+        content: '...';
+      }
     }
 
     /* ─── Classification Result ─────────────────────────────────── */
@@ -1077,7 +1217,10 @@
       text-align: center;
     }
 
-    .result-empty-icon { font-size: 2rem; opacity: 0.5; }
+    .result-empty-icon {
+      font-size: 2rem;
+      opacity: 0.5;
+    }
 
     .verdict-display {
       text-align: center;
@@ -1136,7 +1279,7 @@
     }
 
     .confidence-track {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 100px;
       height: 8px;
       overflow: hidden;
@@ -1149,9 +1292,17 @@
       background: linear-gradient(90deg, var(--forest-sage), var(--forest-light));
     }
 
-    .confidence-fill.low   { background: linear-gradient(90deg, #8b3030, #cc5050); }
-    .confidence-fill.mid   { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
-    .confidence-fill.high  { background: linear-gradient(90deg, var(--forest-sage), var(--forest-light)); }
+    .confidence-fill.low {
+      background: linear-gradient(90deg, #8b3030, #cc5050);
+    }
+
+    .confidence-fill.mid {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .confidence-fill.high {
+      background: linear-gradient(90deg, var(--forest-sage), var(--forest-light));
+    }
 
     /* ─── Segmentation Result ───────────────────────────────────── */
     .seg-result-grid {
@@ -1191,10 +1342,20 @@
       margin: 0 auto 1.5rem;
     }
 
-    .error-banner.shown { display: flex; }
+    .error-banner.shown {
+      display: flex;
+    }
 
-    .error-banner-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 2px; }
-    .error-banner-text { font-size: 0.9rem; color: #e87070; }
+    .error-banner-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .error-banner-text {
+      font-size: 0.9rem;
+      color: #e87070;
+    }
 
     /* ─── About Page ────────────────────────────────────────────── */
     .about-hero {
@@ -1225,7 +1386,10 @@
       background: rgba(46, 107, 66, 0.25);
     }
 
-    .tech-chip-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .tech-chip-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
 
     .tech-chip-name {
       font-size: 0.82rem;
@@ -1304,16 +1468,22 @@
       color: var(--forest-mist);
     }
 
-    .footer span { color: var(--forest-light); }
+    .footer span {
+      color: var(--forest-light);
+    }
 
     /* ─── Responsive ────────────────────────────────────────────── */
     @media (max-width: 768px) {
-      .navbar { padding: 0 1.25rem; }
+      .navbar {
+        padding: 0 1.25rem;
+      }
 
       .nav-links {
         display: none;
         position: fixed;
-        top: 72px; left: 0; right: 0;
+        top: 72px;
+        left: 0;
+        right: 0;
         background: rgba(11, 31, 19, 0.97);
         backdrop-filter: blur(16px);
         flex-direction: column;
@@ -1322,7 +1492,9 @@
         gap: 0.25rem;
       }
 
-      .nav-links.open { display: flex; }
+      .nav-links.open {
+        display: flex;
+      }
 
       .nav-links li a,
       .nav-links li button {
@@ -1331,1094 +1503,1156 @@
         text-align: left;
       }
 
-      .nav-toggle { display: flex; }
+      .nav-toggle {
+        display: flex;
+      }
 
-      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
 
-      .analysis-grid { grid-template-columns: 1fr; }
+      .analysis-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .seg-result-grid { grid-template-columns: 1fr; }
-      .seg-image-panel { grid-column: auto; }
+      .seg-result-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .modal-options { grid-template-columns: 1fr; }
+      .seg-image-panel {
+        grid-column: auto;
+      }
 
-      .card-grid { grid-template-columns: 1fr; }
+      .modal-options {
+        grid-template-columns: 1fr;
+      }
 
-      .scope-grid { grid-template-columns: 1fr; }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .content-section { padding: 4rem 1.25rem; }
-      .hero-content { padding: 3rem 1.25rem; }
+      .scope-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .predict-page { padding: 72px 1.25rem 3rem; }
+      .content-section {
+        padding: 4rem 1.25rem;
+      }
+
+      .hero-content {
+        padding: 3rem 1.25rem;
+      }
+
+      .predict-page {
+        padding: 72px 1.25rem 3rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .hero-cta-group { flex-direction: column; align-items: center; }
-      .stats-strip { grid-template-columns: 1fr 1fr; }
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .stats-strip {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- NAVBAR                                                          -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<nav class="navbar">
-  <div class="nav-brand" onclick="showPage('home')">
-    <div class="nav-brand-icon">🌿</div>
-    <span class="nav-brand-text">HydroNet <span>Intelligence</span></span>
-  </div>
-
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#" id="nav-home" class="active" onclick="showPage('home'); return false;">Home</a></li>
-    <li><a href="#" id="nav-about" onclick="showPage('about'); return false;">About</a></li>
-  </ul>
-</nav>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- HOME PAGE                                                        -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<div id="page-home" class="page active">
-  <div class="section-wrap">
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-bg">
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-badge">AI-Powered Aerial Analysis</div>
-        <h1 class="hero-title">
-          Detect Floods from<br>
-          <span class="accent">Above the Clouds</span>
-        </h1>
-        <p class="hero-subtitle">
-          Upload aerial imagery and let our machine learning models instantly
-          classify flood conditions and produce pixel-level segmentation maps —
-          enabling faster disaster response when it matters most.
-        </p>
-        <div class="hero-cta-group">
-          <button class="btn btn-primary btn-lg" onclick="openModal()">
-            🚀 Start Prediction
-          </button>
-          <button class="btn btn-outline btn-lg" onclick="showPage('about')">
-            Learn More
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats -->
-    <div class="stats-strip">
-      <div class="stat-item">
-        <div class="stat-number">10</div>
-        <div class="stat-label">Semantic Classes</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">2</div>
-        <div class="stat-label">ML Models</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">256px</div>
-        <div class="stat-label">Segmentation Resolution</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">HOG</div>
-        <div class="stat-label">Feature Extraction</div>
-      </div>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- NAVBAR                                                          -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="showPage('home')">
+      <div class="nav-brand-icon">🌿</div>
+      <span class="nav-brand-text">HydroNet <span>Intelligence</span></span>
     </div>
 
-    <!-- Why Section -->
-    <section class="content-section why-section">
-      <div class="section-container">
-        <div class="why-grid">
-          <div>
-            <span class="section-eyebrow">The Challenge</span>
-            <h2 class="section-title">Why Flood Detection <span class="italic">Matters</span></h2>
-            <p class="section-intro">
-              Floods are the world's most frequent and costly natural disasters. Traditional
-              ground surveys are slow and dangerous — aerial intelligence changes everything.
-            </p>
-            <ul class="why-list">
-              <li>
-                <div class="why-list-icon">⚡</div>
-                <div class="why-list-text">
-                  <strong>Speed of Response</strong>
-                  <span>Every minute counts during a flood event. Automated aerial analysis delivers insights in seconds, not hours.</span>
-                </div>
-              </li>
-              <li>
-                <div class="why-list-icon">🗺️</div>
-                <div class="why-list-text">
-                  <strong>Coverage at Scale</strong>
-                  <span>Aerial and satellite imagery can assess entire flood-affected regions simultaneously, impossible for ground teams.</span>
-                </div>
-              </li>
-              <li>
-                <div class="why-list-icon">🔒</div>
-                <div class="why-list-text">
-                  <strong>Responder Safety</strong>
-                  <span>AI analysis removes the need to send personnel into dangerous, inundated areas for initial assessment.</span>
-                </div>
-              </li>
-              <li>
-                <div class="why-list-icon">📊</div>
-                <div class="why-list-text">
-                  <strong>Data-Driven Decisions</strong>
-                  <span>Confidence scores and segmentation maps give decision-makers the quantitative evidence they need.</span>
-                </div>
-              </li>
-            </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" id="nav-home" class="active" onclick="showPage('home'); return false;">Home</a></li>
+      <li><a href="#" id="nav-about" onclick="showPage('about'); return false;">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- HOME PAGE                                                        -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="page-home" class="page active">
+    <div class="section-wrap">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-bg">
+          <div class="hero-orb hero-orb-1"></div>
+          <div class="hero-orb hero-orb-2"></div>
+          <div class="hero-orb hero-orb-3"></div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-badge">AI-Powered Aerial Analysis</div>
+          <h1 class="hero-title">
+            Detect Floods from<br>
+            <span class="accent">Above the Clouds</span>
+          </h1>
+          <p class="hero-subtitle">
+            Upload aerial imagery and let our machine learning models instantly
+            classify flood conditions and produce pixel-level segmentation maps —
+            enabling faster disaster response when it matters most.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-lg" onclick="openModal()">
+              🚀 Start Prediction
+            </button>
+            <button class="btn btn-outline btn-lg" onclick="showPage('about')">
+              Learn More
+            </button>
           </div>
-          <div class="why-visual">
-            <div class="why-visual-box">
-              <div class="why-big-number">%</div>
-              <p class="why-fact">"Floods account for nearly 40% of all natural disaster events globally."</p>
-              <p class="why-fact-source">— UNDRR Global Assessment Report</p>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <div class="stats-strip">
+        <div class="stat-item">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Semantic Classes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">ML Models</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">256px</div>
+          <div class="stat-label">Segmentation Resolution</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">HOG</div>
+          <div class="stat-label">Feature Extraction</div>
+        </div>
+      </div>
+
+      <!-- Why Section -->
+      <section class="content-section why-section">
+        <div class="section-container">
+          <div class="why-grid">
+            <div>
+              <span class="section-eyebrow">The Challenge</span>
+              <h2 class="section-title">Why Flood Detection <span class="italic">Matters</span></h2>
+              <p class="section-intro">
+                Floods are the world's most frequent and costly natural disasters. Traditional
+                ground surveys are slow and dangerous — aerial intelligence changes everything.
+              </p>
+              <ul class="why-list">
+                <li>
+                  <div class="why-list-icon">⚡</div>
+                  <div class="why-list-text">
+                    <strong>Speed of Response</strong>
+                    <span>Every minute counts during a flood event. Automated aerial analysis delivers insights in
+                      seconds, not hours.</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="why-list-icon">🗺️</div>
+                  <div class="why-list-text">
+                    <strong>Coverage at Scale</strong>
+                    <span>Aerial and satellite imagery can assess entire flood-affected regions simultaneously,
+                      impossible for ground teams.</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="why-list-icon">🔒</div>
+                  <div class="why-list-text">
+                    <strong>Responder Safety</strong>
+                    <span>AI analysis removes the need to send personnel into dangerous, inundated areas for initial
+                      assessment.</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="why-list-icon">📊</div>
+                  <div class="why-list-text">
+                    <strong>Data-Driven Decisions</strong>
+                    <span>Confidence scores and segmentation maps give decision-makers the quantitative evidence they
+                      need.</span>
+                  </div>
+                </li>
+              </ul>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Use Cases -->
-    <section class="content-section">
-      <div class="section-container">
-        <span class="section-eyebrow">Real-World Applications</span>
-        <h2 class="section-title">Built for <span class="italic">Critical</span> Situations</h2>
-        <div class="usecase-grid">
-          <div class="usecase-item">
-            <div class="usecase-emoji">🏥</div>
-            <div class="usecase-title">Emergency Response</div>
-            <div class="usecase-text">Rapid triage of affected zones to deploy rescue teams efficiently.</div>
-          </div>
-          <div class="usecase-item">
-            <div class="usecase-emoji">🏛️</div>
-            <div class="usecase-title">Government Planning</div>
-            <div class="usecase-text">Support infrastructure resilience and evacuation route planning.</div>
-          </div>
-          <div class="usecase-item">
-            <div class="usecase-emoji">🌾</div>
-            <div class="usecase-title">Agricultural Loss</div>
-            <div class="usecase-text">Assess crop damage and prioritise relief funds for farmers.</div>
-          </div>
-          <div class="usecase-item">
-            <div class="usecase-emoji">🏢</div>
-            <div class="usecase-title">Insurance & Claims</div>
-            <div class="usecase-text">Objective aerial evidence to validate and expedite claim settlements.</div>
-          </div>
-          <div class="usecase-item">
-            <div class="usecase-emoji">📡</div>
-            <div class="usecase-title">NGO Operations</div>
-            <div class="usecase-text">Aid organisations identify where help is needed most urgently.</div>
-          </div>
-          <div class="usecase-item">
-            <div class="usecase-emoji">🔬</div>
-            <div class="usecase-title">Climate Research</div>
-            <div class="usecase-text">Build longitudinal datasets for flood pattern and climate modelling.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Models -->
-    <section class="content-section why-section">
-      <div class="section-container">
-        <span class="section-eyebrow">Under the Hood</span>
-        <h2 class="section-title">The <span class="italic">Models</span> Powering This</h2>
-        <p class="section-intro" style="margin-bottom:2.5rem;">
-          Two purpose-built machine learning pipelines — each fine-tuned on the FloodNet aerial
-          imagery dataset and optimised for real-world deployment.
-        </p>
-        <div class="card-grid">
-          <div class="model-card">
-            <div class="model-tag model-tag-classification">Classification</div>
-            <h3 class="model-card-title">Flood/Non-Flood Classifier</h3>
-            <p class="model-card-text">
-              A Random Forest classifier trained on HOG texture descriptors and 3-channel
-              colour histograms. Resizes input to 128×128 and outputs a binary verdict
-              with a calibrated probability score.
-            </p>
-            <ul class="model-detail-list">
-              <li>HOG features (9 orientations, 16×16 cells)</li>
-              <li>32-bin colour histograms per channel</li>
-              <li>Outputs: Flooded / Non-Flooded + confidence %</li>
-              <li>Inference in &lt; 2 seconds on CPU</li>
-            </ul>
-          </div>
-          <div class="model-card">
-            <div class="model-tag model-tag-segmentation">Segmentation</div>
-            <h3 class="model-card-title">Pixel-Wise Semantic Segmenter</h3>
-            <p class="model-card-text">
-              Patch-based binary classifier mapped to 10 semantic classes via a colour-profile
-              heuristic. Slides a 32×32 window with 16-pixel stride across a 256×256 image
-              and blends the resulting label map onto the original.
-            </p>
-            <ul class="model-detail-list">
-              <li>10 classes: Water, Buildings, Roads, Trees, Grass…</li>
-              <li>Colour-based sub-classification per patch</li>
-              <li>Uncertainty detection via confidence spread</li>
-              <li>Output: blended overlay + area distribution chart</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <span class="section-eyebrow">Ready to Analyse?</span>
-      <h2 class="section-title" style="max-width:600px;margin:0 auto 1rem;">
-        Upload Your Aerial Image and Get <span class="italic">Instant</span> Results
-      </h2>
-      <p style="color:var(--forest-mist);max-width:500px;margin:0 auto 2.5rem;font-size:0.95rem;">
-        No account needed. Choose Classification for a quick verdict or Segmentation
-        for a detailed spatial breakdown.
-      </p>
-      <button class="btn btn-gold btn-lg" onclick="openModal()">
-        🚀 Start Prediction
-      </button>
-    </section>
-
-    <footer class="footer">
-      <p>Aerial <span>FloodNet</span> Prediction System &nbsp;·&nbsp; FloodNet Dataset &nbsp;·&nbsp; Built with Flask &amp; Machine Learning</p>
-    </footer>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ABOUT PAGE                                                       -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<div id="page-about" class="page">
-  <div class="section-wrap">
-
-    <div class="about-hero">
-      <div class="section-container">
-        <span class="section-eyebrow">Project Overview</span>
-        <h1 class="section-title" style="max-width:700px;margin:0 auto 1.2rem;">
-          Aerial FloodNet <span class="italic">Prediction Challenge</span>
-        </h1>
-        <p class="section-intro" style="margin:0 auto;text-align:center;max-width:680px;">
-          An end-to-end machine learning system that analyses aerial imagery to classify
-          flood conditions and produce semantic segmentation maps — supporting faster,
-          data-driven disaster response at scale.
-        </p>
-        <div class="about-divider"></div>
-      </div>
-    </div>
-
-    <!-- Technologies -->
-    <section class="content-section">
-      <div class="section-container">
-        <span class="section-eyebrow">Technology Stack</span>
-        <h2 class="section-title">Tools &amp; <span class="italic">Frameworks</span></h2>
-        <p class="section-intro">
-          Built on battle-tested open-source tools, this system runs entirely on CPU
-          without requiring a GPU.
-        </p>
-        <div class="tech-grid">
-          <div class="tech-chip">
-            <div class="tech-chip-icon">🐍</div>
-            <div class="tech-chip-name">Python 3</div>
-            <div class="tech-chip-desc">Core language</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">🌶️</div>
-            <div class="tech-chip-name">Flask</div>
-            <div class="tech-chip-desc">REST API backend</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">🔬</div>
-            <div class="tech-chip-name">scikit-learn</div>
-            <div class="tech-chip-desc">ML models</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">👁️</div>
-            <div class="tech-chip-name">OpenCV</div>
-            <div class="tech-chip-desc">Image processing</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">🔢</div>
-            <div class="tech-chip-name">NumPy</div>
-            <div class="tech-chip-desc">Numerical ops</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">🖼️</div>
-            <div class="tech-chip-name">scikit-image</div>
-            <div class="tech-chip-desc">HOG features</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">💾</div>
-            <div class="tech-chip-name">joblib</div>
-            <div class="tech-chip-desc">Model serialisation</div>
-          </div>
-          <div class="tech-chip">
-            <div class="tech-chip-icon">📊</div>
-            <div class="tech-chip-name">Chart.js</div>
-            <div class="tech-chip-desc">Result charts</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Models Detail -->
-    <section class="content-section why-section">
-      <div class="section-container">
-        <span class="section-eyebrow">Model Architecture</span>
-        <h2 class="section-title">Classification &amp; <span class="italic">Segmentation</span></h2>
-
-        <div class="card-grid" style="margin-top:2.5rem;">
-          <div class="card">
-            <div class="card-icon card-icon-green">🌲</div>
-            <h3 class="card-title">Task 1 — Image Classification</h3>
-            <p class="card-text">
-              Random Forest classifier trained on HOG texture features combined with
-              multi-channel colour histograms. Images are resized to 128×128 and converted
-              to grayscale for HOG extraction. The colour component uses 32-bin histograms
-              over each BGR channel. The final feature vector is ~1,100-dimensional.
-              Outputs a binary label (Flooded / Non-Flooded) with a calibrated confidence
-              percentage derived from <code>predict_proba</code>.
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-icon card-icon-blue">🌊</div>
-            <h3 class="card-title">Task 2 — Semantic Segmentation</h3>
-            <p class="card-text">
-              Patch-based sliding-window approach over 256×256 resized images. A 32×32
-              window slides with stride 16, producing a binary flood/non-flood prediction
-              per patch. A colour-profile heuristic then refines each prediction into
-              one of 10 FloodNet semantic classes (Water, Building-Flooded, Road, Tree,
-              Grass, Vehicle, Pool…). Class labels are colour-coded, blended 40/60 with
-              the original image, and returned as a Base64-encoded PNG alongside per-class
-              percentage distributions.
-            </p>
-          </div>
-        </div>
-
-        <!-- Semantic Classes -->
-        <div style="margin-top:3rem;">
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:1.5rem;">
-            10 Semantic Classes
-          </h3>
-          <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
-            <span style="background:rgba(55,71,79,0.5);border:1px solid rgba(55,71,79,0.8);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:var(--cream);">⬛ Background</span>
-            <span style="background:rgba(255,61,90,0.2);border:1px solid rgba(255,61,90,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#ff6b8a;">🔴 Building-Flooded</span>
-            <span style="background:rgba(255,152,0,0.2);border:1px solid rgba(255,152,0,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#ffb733;">🟠 Building-Non-Flood</span>
-            <span style="background:rgba(224,64,251,0.2);border:1px solid rgba(224,64,251,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#e060f0;">🟣 Road-Flooded</span>
-            <span style="background:rgba(124,77,255,0.2);border:1px solid rgba(124,77,255,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#9e80ff;">🔵 Road-Non-Flood</span>
-            <span style="background:rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#33e5ff;">💧 Water</span>
-            <span style="background:rgba(0,230,118,0.15);border:1px solid rgba(0,230,118,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#33e880;">🌳 Tree</span>
-            <span style="background:rgba(255,214,0,0.15);border:1px solid rgba(255,214,0,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#ffdb33;">🚗 Vehicle</span>
-            <span style="background:rgba(64,196,255,0.15);border:1px solid rgba(64,196,255,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#66d1ff;">🏊 Pool</span>
-            <span style="background:rgba(105,240,174,0.15);border:1px solid rgba(105,240,174,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#7af0c0;">🌿 Grass</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Purpose & Scope -->
-    <section class="content-section">
-      <div class="section-container">
-        <span class="section-eyebrow">Vision</span>
-        <h2 class="section-title">Purpose &amp; <span class="italic">Future Scope</span></h2>
-        <p class="section-intro" style="margin-bottom:2rem;">
-          This project demonstrates that classical machine learning — without deep learning — can
-          produce actionable flood intelligence from aerial imagery.
-        </p>
-
-        <div class="scope-grid">
-          <div class="scope-card">
-            <div class="scope-card-title">🎯 Current Purpose</div>
-            <ul class="scope-list">
-              <li>Rapid flood/non-flood classification of aerial images</li>
-              <li>Pixel-level semantic mapping for spatial damage assessment</li>
-              <li>Confidence-aware uncertain predictions to avoid false certainty</li>
-              <li>Lightweight CPU deployment — no GPU infrastructure needed</li>
-              <li>REST API integration ready for embedding in wider platforms</li>
-            </ul>
-          </div>
-          <div class="scope-card">
-            <div class="scope-card-title">🚀 Future Scope</div>
-            <ul class="scope-list">
-              <li>Deep learning (U-Net, DeepLab) for pixel-accurate segmentation</li>
-              <li>Real-time satellite image ingestion pipeline</li>
-              <li>Multi-temporal flood progression tracking</li>
-              <li>GIS integration for geospatial map overlays</li>
-              <li>Mobile-first field app for responders with offline support</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p>Aerial <span>FloodNet</span> Prediction System &nbsp;·&nbsp; FloodNet Dataset &nbsp;·&nbsp; Built with Flask &amp; Machine Learning</p>
-    </footer>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- CLASSIFICATION PAGE                                              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<div id="page-classify" class="page">
-  <div class="predict-page">
-    <div class="predict-header">
-      <div class="predict-back" onclick="showPage('home')">← Back to Home</div>
-      <h1 class="predict-title">🌿 Flood Classification</h1>
-      <p class="predict-subtitle">Upload an aerial image — our model will determine if the area is flooded or not.</p>
-    </div>
-
-    <!-- Error Banner -->
-    <div class="error-banner" id="clf-error">
-      <span class="error-banner-icon">⚠️</span>
-      <span class="error-banner-text" id="clf-error-text">An error occurred.</span>
-    </div>
-
-    <!-- Upload Zone -->
-    <div class="upload-section">
-      <div class="upload-zone" id="clf-drop-zone">
-        <input type="file" id="clf-file-input" accept="image/*" onchange="onClassifyFile(event)" />
-        <div class="upload-icon">📷</div>
-        <div class="upload-title">Drop your aerial image here</div>
-        <p class="upload-hint">or <span>click to browse</span> &nbsp;·&nbsp; JPG, PNG, WEBP supported</p>
-      </div>
-    </div>
-
-    <!-- Preview + Result -->
-    <div class="analysis-grid" id="clf-panels" style="display:none;">
-      <div class="analysis-panel">
-        <div class="panel-header">
-          <span class="panel-header-icon">🖼️</span>
-          <span class="panel-header-title">Uploaded Image</span>
-        </div>
-        <div class="panel-body">
-          <img id="clf-preview" class="image-preview" src="" alt="Preview" />
-          <div class="preview-placeholder" id="clf-placeholder">
-            <div class="ph-icon">🖼️</div>
-            <span>Image preview</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="analysis-panel">
-        <div class="panel-header">
-          <span class="panel-header-icon">🔍</span>
-          <span class="panel-header-title">Analysis Result</span>
-        </div>
-        <div class="panel-body">
-          <!-- Spinner -->
-          <div class="spinner-wrap" id="clf-spinner">
-            <div class="spinner"></div>
-            <p class="spinner-text">Analysing image<span class="spinner-dots"></span></p>
-          </div>
-          <!-- Empty state -->
-          <div class="result-empty" id="clf-empty">
-            <span class="result-empty-icon">🤖</span>
-            <span>Click "Analyse Image" to run prediction</span>
-          </div>
-          <!-- Result -->
-          <div id="clf-result" style="display:none;">
-            <div class="verdict-display">
-              <span class="verdict-icon" id="clf-verdict-icon">🤔</span>
-              <div class="verdict-badge" id="clf-verdict-badge">—</div>
-            </div>
-            <div class="confidence-bar-wrap">
-              <div class="confidence-label">
-                <span>Model Confidence</span>
-                <span class="confidence-value" id="clf-conf-text">0%</span>
-              </div>
-              <div class="confidence-track">
-                <div class="confidence-fill" id="clf-conf-fill" style="width:0%"></div>
+            <div class="why-visual">
+              <div class="why-visual-box">
+                <div class="why-big-number">%</div>
+                <p class="why-fact">"Floods account for nearly 40% of all natural disaster events globally."</p>
+                <p class="why-fact-source">— UNDRR Global Assessment Report</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- Analyse Button -->
-    <div class="analyse-btn-wrap" id="clf-btn-wrap" style="display:none;">
-      <button class="btn btn-primary btn-lg" id="clf-analyse-btn" onclick="runClassification()">
-        🔍 Analyse Image
-      </button>
-      <button class="btn btn-outline btn-sm" style="margin-left:1rem;" onclick="resetClassify()">
-        ↺ Reset
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SEGMENTATION PAGE                                                -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<div id="page-segment" class="page">
-  <div class="predict-page">
-    <div class="predict-header">
-      <div class="predict-back" onclick="showPage('home')">← Back to Home</div>
-      <h1 class="predict-title">🗺️ Semantic Segmentation</h1>
-      <p class="predict-subtitle">Upload an aerial image to generate a pixel-level segmentation map with class distribution.</p>
-    </div>
-
-    <!-- Error Banner -->
-    <div class="error-banner" id="seg-error">
-      <span class="error-banner-icon">⚠️</span>
-      <span class="error-banner-text" id="seg-error-text">An error occurred.</span>
-    </div>
-
-    <!-- Upload Zone -->
-    <div class="upload-section">
-      <div class="upload-zone" id="seg-drop-zone">
-        <input type="file" id="seg-file-input" accept="image/*" onchange="onSegmentFile(event)" />
-        <div class="upload-icon">🛰️</div>
-        <div class="upload-title">Drop your aerial image here</div>
-        <p class="upload-hint">or <span>click to browse</span> &nbsp;·&nbsp; JPG, PNG, WEBP supported</p>
-      </div>
-    </div>
-
-    <!-- Analyse Button -->
-    <div class="analyse-btn-wrap" id="seg-btn-wrap" style="display:none;">
-      <button class="btn btn-primary btn-lg" id="seg-analyse-btn" onclick="runSegmentation()">
-        🗺️ Analyse Image
-      </button>
-      <button class="btn btn-outline btn-sm" style="margin-left:1rem;" onclick="resetSegment()">
-        ↺ Reset
-      </button>
-    </div>
-
-    <!-- Preview row -->
-    <div class="analysis-grid" id="seg-preview-panels" style="display:none;">
-      <div class="analysis-panel">
-        <div class="panel-header">
-          <span class="panel-header-icon">🖼️</span>
-          <span class="panel-header-title">Original Image</span>
-        </div>
-        <div class="panel-body">
-          <img id="seg-preview" class="image-preview" src="" alt="Preview" />
-        </div>
-      </div>
-
-      <div class="analysis-panel" id="seg-spinner-panel">
-        <div class="panel-header">
-          <span class="panel-header-icon">⏳</span>
-          <span class="panel-header-title">Processing</span>
-        </div>
-        <div class="panel-body">
-          <div class="spinner-wrap shown" id="seg-spinner">
-            <div class="spinner"></div>
-            <p class="spinner-text">Running segmentation<span class="spinner-dots"></span></p>
-            <p class="spinner-text" style="font-size:0.8rem;opacity:0.6;">This may take a few seconds</p>
+      <!-- Use Cases -->
+      <section class="content-section">
+        <div class="section-container">
+          <span class="section-eyebrow">Real-World Applications</span>
+          <h2 class="section-title">Built for <span class="italic">Critical</span> Situations</h2>
+          <div class="usecase-grid">
+            <div class="usecase-item">
+              <div class="usecase-emoji">🏥</div>
+              <div class="usecase-title">Emergency Response</div>
+              <div class="usecase-text">Rapid triage of affected zones to deploy rescue teams efficiently.</div>
+            </div>
+            <div class="usecase-item">
+              <div class="usecase-emoji">🏛️</div>
+              <div class="usecase-title">Government Planning</div>
+              <div class="usecase-text">Support infrastructure resilience and evacuation route planning.</div>
+            </div>
+            <div class="usecase-item">
+              <div class="usecase-emoji">🌾</div>
+              <div class="usecase-title">Agricultural Loss</div>
+              <div class="usecase-text">Assess crop damage and prioritise relief funds for farmers.</div>
+            </div>
+            <div class="usecase-item">
+              <div class="usecase-emoji">🏢</div>
+              <div class="usecase-title">Insurance & Claims</div>
+              <div class="usecase-text">Objective aerial evidence to validate and expedite claim settlements.</div>
+            </div>
+            <div class="usecase-item">
+              <div class="usecase-emoji">📡</div>
+              <div class="usecase-title">NGO Operations</div>
+              <div class="usecase-text">Aid organisations identify where help is needed most urgently.</div>
+            </div>
+            <div class="usecase-item">
+              <div class="usecase-emoji">🔬</div>
+              <div class="usecase-title">Climate Research</div>
+              <div class="usecase-text">Build longitudinal datasets for flood pattern and climate modelling.</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Models -->
+      <section class="content-section why-section">
+        <div class="section-container">
+          <span class="section-eyebrow">Under the Hood</span>
+          <h2 class="section-title">The <span class="italic">Models</span> Powering This</h2>
+          <p class="section-intro" style="margin-bottom:2.5rem;">
+            Two purpose-built machine learning pipelines — each fine-tuned on the FloodNet aerial
+            imagery dataset and optimised for real-world deployment.
+          </p>
+          <div class="card-grid">
+            <div class="model-card">
+              <div class="model-tag model-tag-classification">Classification</div>
+              <h3 class="model-card-title">Flood/Non-Flood Classifier</h3>
+              <p class="model-card-text">
+                A Random Forest classifier trained on HOG texture descriptors and 3-channel
+                colour histograms. Resizes input to 128×128 and outputs a binary verdict
+                with a calibrated probability score.
+              </p>
+              <ul class="model-detail-list">
+                <li>HOG features (9 orientations, 16×16 cells)</li>
+                <li>32-bin colour histograms per channel</li>
+                <li>Outputs: Flooded / Non-Flooded + confidence %</li>
+                <li>Inference in &lt; 2 seconds on CPU</li>
+              </ul>
+            </div>
+            <div class="model-card">
+              <div class="model-tag model-tag-segmentation">Segmentation</div>
+              <h3 class="model-card-title">Pixel-Wise Semantic Segmenter</h3>
+              <p class="model-card-text">
+                Patch-based binary classifier mapped to 10 semantic classes via a colour-profile
+                heuristic. Slides a 32×32 window with 16-pixel stride across a 256×256 image
+                and blends the resulting label map onto the original.
+              </p>
+              <ul class="model-detail-list">
+                <li>10 classes: Water, Buildings, Roads, Trees, Grass…</li>
+                <li>Colour-based sub-classification per patch</li>
+                <li>Uncertainty detection via confidence spread</li>
+                <li>Output: blended overlay + area distribution chart</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <span class="section-eyebrow">Ready to Analyse?</span>
+        <h2 class="section-title" style="max-width:600px;margin:0 auto 1rem;">
+          Upload Your Aerial Image and Get <span class="italic">Instant</span> Results
+        </h2>
+        <p style="color:var(--forest-mist);max-width:500px;margin:0 auto 2.5rem;font-size:0.95rem;">
+          No account needed. Choose Classification for a quick verdict or Segmentation
+          for a detailed spatial breakdown.
+        </p>
+        <button class="btn btn-gold btn-lg" onclick="openModal()">
+          🚀 Start Prediction
+        </button>
+      </section>
+
+      <footer class="footer">
+        <p>Aerial <span>FloodNet</span> Prediction System &nbsp;·&nbsp; FloodNet Dataset &nbsp;·&nbsp; Built with Flask
+          &amp; Machine Learning</p>
+      </footer>
     </div>
+  </div>
 
-    <!-- Segmentation Results -->
-    <div id="seg-results" style="display:none;max-width:900px;margin:0 auto;">
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- ABOUT PAGE                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="page-about" class="page">
+    <div class="section-wrap">
 
-      <!-- Verdict Banner -->
-      <div id="seg-verdict-banner" style="margin-bottom:1.5rem;text-align:center;">
-        <div class="verdict-badge" id="seg-verdict-badge" style="font-size:1.2rem;padding:0.7rem 2.5rem;">—</div>
+      <div class="about-hero">
+        <div class="section-container">
+          <span class="section-eyebrow">Project Overview</span>
+          <h1 class="section-title" style="max-width:700px;margin:0 auto 1.2rem;">
+            Aerial FloodNet <span class="italic">Prediction Challenge</span>
+          </h1>
+          <p class="section-intro" style="margin:0 auto;text-align:center;max-width:680px;">
+            An end-to-end machine learning system that analyses aerial imagery to classify
+            flood conditions and produce semantic segmentation maps — supporting faster,
+            data-driven disaster response at scale.
+          </p>
+          <div class="about-divider"></div>
+        </div>
       </div>
 
-      <!-- Result Grid -->
-      <div class="analysis-grid">
-        <!-- Segmented Image -->
+      <!-- Technologies -->
+      <section class="content-section">
+        <div class="section-container">
+          <span class="section-eyebrow">Technology Stack</span>
+          <h2 class="section-title">Tools &amp; <span class="italic">Frameworks</span></h2>
+          <p class="section-intro">
+            Built on battle-tested open-source tools, this system runs entirely on CPU
+            without requiring a GPU.
+          </p>
+          <div class="tech-grid">
+            <div class="tech-chip">
+              <div class="tech-chip-icon">🐍</div>
+              <div class="tech-chip-name">Python 3</div>
+              <div class="tech-chip-desc">Core language</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">🌶️</div>
+              <div class="tech-chip-name">Flask</div>
+              <div class="tech-chip-desc">REST API backend</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">🔬</div>
+              <div class="tech-chip-name">scikit-learn</div>
+              <div class="tech-chip-desc">ML models</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">👁️</div>
+              <div class="tech-chip-name">OpenCV</div>
+              <div class="tech-chip-desc">Image processing</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">🔢</div>
+              <div class="tech-chip-name">NumPy</div>
+              <div class="tech-chip-desc">Numerical ops</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">🖼️</div>
+              <div class="tech-chip-name">scikit-image</div>
+              <div class="tech-chip-desc">HOG features</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">💾</div>
+              <div class="tech-chip-name">joblib</div>
+              <div class="tech-chip-desc">Model serialisation</div>
+            </div>
+            <div class="tech-chip">
+              <div class="tech-chip-icon">📊</div>
+              <div class="tech-chip-name">Chart.js</div>
+              <div class="tech-chip-desc">Result charts</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Models Detail -->
+      <section class="content-section why-section">
+        <div class="section-container">
+          <span class="section-eyebrow">Model Architecture</span>
+          <h2 class="section-title">Classification &amp; <span class="italic">Segmentation</span></h2>
+
+          <div class="card-grid" style="margin-top:2.5rem;">
+            <div class="card">
+              <div class="card-icon card-icon-green">🌲</div>
+              <h3 class="card-title">Task 1 — Image Classification</h3>
+              <p class="card-text">
+                Random Forest classifier trained on HOG texture features combined with
+                multi-channel colour histograms. Images are resized to 128×128 and converted
+                to grayscale for HOG extraction. The colour component uses 32-bin histograms
+                over each BGR channel. The final feature vector is ~1,100-dimensional.
+                Outputs a binary label (Flooded / Non-Flooded) with a calibrated confidence
+                percentage derived from <code>predict_proba</code>.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-icon card-icon-blue">🌊</div>
+              <h3 class="card-title">Task 2 — Semantic Segmentation</h3>
+              <p class="card-text">
+                Patch-based sliding-window approach over 256×256 resized images. A 32×32
+                window slides with stride 16, producing a binary flood/non-flood prediction
+                per patch. A colour-profile heuristic then refines each prediction into
+                one of 10 FloodNet semantic classes (Water, Building-Flooded, Road, Tree,
+                Grass, Vehicle, Pool…). Class labels are colour-coded, blended 40/60 with
+                the original image, and returned as a Base64-encoded PNG alongside per-class
+                percentage distributions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Semantic Classes -->
+          <div style="margin-top:3rem;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:1.5rem;">
+              10 Semantic Classes
+            </h3>
+            <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+              <span
+                style="background:rgba(55,71,79,0.5);border:1px solid rgba(55,71,79,0.8);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:var(--cream);">⬛
+                Background</span>
+              <span
+                style="background:rgba(255,61,90,0.2);border:1px solid rgba(255,61,90,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#ff6b8a;">🔴
+                Building-Flooded</span>
+              <span
+                style="background:rgba(255,152,0,0.2);border:1px solid rgba(255,152,0,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#ffb733;">🟠
+                Building-Non-Flood</span>
+              <span
+                style="background:rgba(224,64,251,0.2);border:1px solid rgba(224,64,251,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#e060f0;">🟣
+                Road-Flooded</span>
+              <span
+                style="background:rgba(124,77,255,0.2);border:1px solid rgba(124,77,255,0.5);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#9e80ff;">🔵
+                Road-Non-Flood</span>
+              <span
+                style="background:rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#33e5ff;">💧
+                Water</span>
+              <span
+                style="background:rgba(0,230,118,0.15);border:1px solid rgba(0,230,118,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#33e880;">🌳
+                Tree</span>
+              <span
+                style="background:rgba(255,214,0,0.15);border:1px solid rgba(255,214,0,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#ffdb33;">🚗
+                Vehicle</span>
+              <span
+                style="background:rgba(64,196,255,0.15);border:1px solid rgba(64,196,255,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#66d1ff;">🏊
+                Pool</span>
+              <span
+                style="background:rgba(105,240,174,0.15);border:1px solid rgba(105,240,174,0.4);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;color:#7af0c0;">🌿
+                Grass</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Purpose & Scope -->
+      <section class="content-section">
+        <div class="section-container">
+          <span class="section-eyebrow">Vision</span>
+          <h2 class="section-title">Purpose &amp; <span class="italic">Future Scope</span></h2>
+          <p class="section-intro" style="margin-bottom:2rem;">
+            This project demonstrates that classical machine learning — without deep learning — can
+            produce actionable flood intelligence from aerial imagery.
+          </p>
+
+          <div class="scope-grid">
+            <div class="scope-card">
+              <div class="scope-card-title">🎯 Current Purpose</div>
+              <ul class="scope-list">
+                <li>Rapid flood/non-flood classification of aerial images</li>
+                <li>Pixel-level semantic mapping for spatial damage assessment</li>
+                <li>Confidence-aware uncertain predictions to avoid false certainty</li>
+                <li>Lightweight CPU deployment — no GPU infrastructure needed</li>
+                <li>REST API integration ready for embedding in wider platforms</li>
+              </ul>
+            </div>
+            <div class="scope-card">
+              <div class="scope-card-title">🚀 Future Scope</div>
+              <ul class="scope-list">
+                <li>Deep learning (U-Net, DeepLab) for pixel-accurate segmentation</li>
+                <li>Real-time satellite image ingestion pipeline</li>
+                <li>Multi-temporal flood progression tracking</li>
+                <li>GIS integration for geospatial map overlays</li>
+                <li>Mobile-first field app for responders with offline support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Aerial <span>FloodNet</span> Prediction System &nbsp;·&nbsp; FloodNet Dataset &nbsp;·&nbsp; Built with Flask
+          &amp; Machine Learning</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- CLASSIFICATION PAGE                                              -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="page-classify" class="page">
+    <div class="predict-page">
+      <div class="predict-header">
+        <div class="predict-back" onclick="showPage('home')">← Back to Home</div>
+        <h1 class="predict-title">🌿 Flood Classification</h1>
+        <p class="predict-subtitle">Upload an aerial image — our model will determine if the area is flooded or not.</p>
+      </div>
+
+      <!-- Error Banner -->
+      <div class="error-banner" id="clf-error">
+        <span class="error-banner-icon">⚠️</span>
+        <span class="error-banner-text" id="clf-error-text">An error occurred.</span>
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="upload-section">
+        <div class="upload-zone" id="clf-drop-zone">
+          <input type="file" id="clf-file-input" accept="image/*" onchange="onClassifyFile(event)" />
+          <div class="upload-icon">📷</div>
+          <div class="upload-title">Drop your aerial image here</div>
+          <p class="upload-hint">or <span>click to browse</span> &nbsp;·&nbsp; JPG, PNG, WEBP supported</p>
+        </div>
+      </div>
+
+      <!-- Preview + Result -->
+      <div class="analysis-grid" id="clf-panels" style="display:none;">
         <div class="analysis-panel">
           <div class="panel-header">
-            <span class="panel-header-icon">🎨</span>
-            <span class="panel-header-title">Segmented Output</span>
+            <span class="panel-header-icon">🖼️</span>
+            <span class="panel-header-title">Uploaded Image</span>
           </div>
           <div class="panel-body">
-            <img id="seg-output-img" class="seg-output-img" src="" alt="Segmentation output" />
+            <img id="clf-preview" class="image-preview" src="" alt="Preview" />
+            <div class="preview-placeholder" id="clf-placeholder">
+              <div class="ph-icon">🖼️</div>
+              <span>Image preview</span>
+            </div>
           </div>
         </div>
 
-        <!-- Chart -->
         <div class="analysis-panel">
-        <div class="panel-header">
-          <span class="panel-header-icon">📊</span>
-          <span class="panel-header-title">Area Distribution by Class</span>
-        </div>
-        <div class="panel-body">
-          <!-- Chart (hidden when uncertain) -->
-          <div class="chart-container" id="seg-chart-wrap">
-            <canvas id="seg-chart"></canvas>
+          <div class="panel-header">
+            <span class="panel-header-icon">🔍</span>
+            <span class="panel-header-title">Analysis Result</span>
           </div>
-          <!-- Uncertain note (shown only when verdict = UNCERTAIN) -->
-          <div id="seg-uncertain-note" style="display:none;padding:2rem 1rem;text-align:center;">
-            <div style="font-size:2.5rem;margin-bottom:1rem;">⚠️</div>
-            <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:0.75rem;font-weight:600;">
-              Image is Uncertain
-            </p>
-            <p style="font-size:0.9rem;color:var(--forest-mist);line-height:1.7;max-width:420px;margin:0 auto;">
-              <strong style="color:var(--cream);">Note:</strong> The model could not confidently determine the flood status of this image.
-              The area distribution chart is unavailable for uncertain predictions.
-              Please select a clearer aerial image and try again.
-            </p>
-            <div style="margin-top:1.5rem;">
-              <button class="btn btn-outline btn-sm" onclick="resetSegment()">↺ Try Another Image</button>
+          <div class="panel-body">
+            <!-- Spinner -->
+            <div class="spinner-wrap" id="clf-spinner">
+              <div class="spinner"></div>
+              <p class="spinner-text">Analysing image<span class="spinner-dots"></span></p>
+            </div>
+            <!-- Empty state -->
+            <div class="result-empty" id="clf-empty">
+              <span class="result-empty-icon">🤖</span>
+              <span>Click "Analyse Image" to run prediction</span>
+            </div>
+            <!-- Result -->
+            <div id="clf-result" style="display:none;">
+              <div class="verdict-display">
+                <span class="verdict-icon" id="clf-verdict-icon">🤔</span>
+                <div class="verdict-badge" id="clf-verdict-badge">—</div>
+              </div>
+              <div class="confidence-bar-wrap">
+                <div class="confidence-label">
+                  <span>Model Confidence</span>
+                  <span class="confidence-value" id="clf-conf-text">0%</span>
+                </div>
+                <div class="confidence-track">
+                  <div class="confidence-fill" id="clf-conf-fill" style="width:0%"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- MODAL — Choose Module                                            -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<div class="modal-overlay" id="modal-overlay" onclick="modalOutsideClick(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <h2 class="modal-title">Choose Analysis Type</h2>
-    <p class="modal-subtitle">What kind of prediction would you like to run?</p>
-    <div class="modal-options">
-      <div class="modal-option" onclick="openModule('classify')">
-        <div class="modal-option-icon">🌿</div>
-        <div class="modal-option-title">Classification</div>
-        <div class="modal-option-desc">Flooded or Not Flooded — with a confidence score</div>
-      </div>
-      <div class="modal-option" onclick="openModule('segment')">
-        <div class="modal-option-icon">🗺️</div>
-        <div class="modal-option-title">Segmentation</div>
-        <div class="modal-option-desc">Pixel-level map with class distribution chart</div>
+      <!-- Analyse Button -->
+      <div class="analyse-btn-wrap" id="clf-btn-wrap" style="display:none;">
+        <button class="btn btn-primary btn-lg" id="clf-analyse-btn" onclick="runClassification()">
+          🔍 Analyse Image
+        </button>
+        <button class="btn btn-outline btn-sm" style="margin-left:1rem;" onclick="resetClassify()">
+          ↺ Reset
+        </button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- JAVASCRIPT                                                       -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<script>
-  // ── API Base URL ────────────────────────────────────────────────
-  const API_BASE = '';  // same origin
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SEGMENTATION PAGE                                                -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="page-segment" class="page">
+    <div class="predict-page">
+      <div class="predict-header">
+        <div class="predict-back" onclick="showPage('home')">← Back to Home</div>
+        <h1 class="predict-title">🗺️ Semantic Segmentation</h1>
+        <p class="predict-subtitle">Upload an aerial image to generate a pixel-level segmentation map with class
+          distribution.</p>
+      </div>
 
-  // ── Page Router ─────────────────────────────────────────────────
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
+      <!-- Error Banner -->
+      <div class="error-banner" id="seg-error">
+        <span class="error-banner-icon">⚠️</span>
+        <span class="error-banner-text" id="seg-error-text">An error occurred.</span>
+      </div>
 
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.classList.remove('active');
-    });
-    const activeLink = document.getElementById('nav-' + name);
-    if (activeLink) activeLink.classList.add('active');
+      <!-- Upload Zone -->
+      <div class="upload-section">
+        <div class="upload-zone" id="seg-drop-zone">
+          <input type="file" id="seg-file-input" accept="image/*" onchange="onSegmentFile(event)" />
+          <div class="upload-icon">🛰️</div>
+          <div class="upload-title">Drop your aerial image here</div>
+          <p class="upload-hint">or <span>click to browse</span> &nbsp;·&nbsp; JPG, PNG, WEBP supported</p>
+        </div>
+      </div>
 
-    // Close mobile nav
-    document.getElementById('navLinks').classList.remove('open');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+      <!-- Analyse Button -->
+      <div class="analyse-btn-wrap" id="seg-btn-wrap" style="display:none;">
+        <button class="btn btn-primary btn-lg" id="seg-analyse-btn" onclick="runSegmentation()">
+          🗺️ Analyse Image
+        </button>
+        <button class="btn btn-outline btn-sm" style="margin-left:1rem;" onclick="resetSegment()">
+          ↺ Reset
+        </button>
+      </div>
 
-  // ── Nav Toggle ──────────────────────────────────────────────────
-  document.getElementById('navToggle').addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('open');
-  });
+      <!-- Preview row -->
+      <div class="analysis-grid" id="seg-preview-panels" style="display:none;">
+        <div class="analysis-panel">
+          <div class="panel-header">
+            <span class="panel-header-icon">🖼️</span>
+            <span class="panel-header-title">Original Image</span>
+          </div>
+          <div class="panel-body">
+            <img id="seg-preview" class="image-preview" src="" alt="Preview" />
+          </div>
+        </div>
 
-  // ── Modal ───────────────────────────────────────────────────────
-  function openModal() {
-    document.getElementById('modal-overlay').classList.add('open');
-  }
+        <div class="analysis-panel" id="seg-spinner-panel">
+          <div class="panel-header">
+            <span class="panel-header-icon">⏳</span>
+            <span class="panel-header-title">Processing</span>
+          </div>
+          <div class="panel-body">
+            <div class="spinner-wrap shown" id="seg-spinner">
+              <div class="spinner"></div>
+              <p class="spinner-text">Running segmentation<span class="spinner-dots"></span></p>
+              <p class="spinner-text" style="font-size:0.8rem;opacity:0.6;">This may take a few seconds</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  function closeModal() {
-    document.getElementById('modal-overlay').classList.remove('open');
-  }
+      <!-- Segmentation Results -->
+      <div id="seg-results" style="display:none;max-width:900px;margin:0 auto;">
 
-  function modalOutsideClick(e) {
-    if (e.target === document.getElementById('modal-overlay')) closeModal();
-  }
+        <!-- Verdict Banner -->
+        <div id="seg-verdict-banner" style="margin-bottom:1.5rem;text-align:center;">
+          <div class="verdict-badge" id="seg-verdict-badge" style="font-size:1.2rem;padding:0.7rem 2.5rem;">—</div>
+        </div>
 
-  function openModule(type) {
-    closeModal();
-    showPage(type === 'classify' ? 'classify' : 'segment');
-  }
+        <!-- Result Grid -->
+        <div class="analysis-grid">
+          <!-- Segmented Image -->
+          <div class="analysis-panel">
+            <div class="panel-header">
+              <span class="panel-header-icon">🎨</span>
+              <span class="panel-header-title">Segmented Output</span>
+            </div>
+            <div class="panel-body">
+              <img id="seg-output-img" class="seg-output-img" src="" alt="Segmentation output" />
+            </div>
+          </div>
 
-  // ── Drag & Drop helpers ─────────────────────────────────────────
-  function setupDragDrop(zoneId, handler) {
-    const zone = document.getElementById(zoneId);
-    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
-    zone.addEventListener('dragleave',  ()  => zone.classList.remove('drag-over'));
-    zone.addEventListener('drop', e => {
-      e.preventDefault();
-      zone.classList.remove('drag-over');
-      const file = e.dataTransfer.files[0];
-      if (file && file.type.startsWith('image/')) handler(file);
-    });
-  }
+          <!-- Chart -->
+          <div class="analysis-panel">
+            <div class="panel-header">
+              <span class="panel-header-icon">📊</span>
+              <span class="panel-header-title">Area Distribution by Class</span>
+            </div>
+            <div class="panel-body">
+              <!-- Chart (hidden when uncertain) -->
+              <div class="chart-container" id="seg-chart-wrap">
+                <canvas id="seg-chart"></canvas>
+              </div>
+              <!-- Uncertain note (shown only when verdict = UNCERTAIN) -->
+              <div id="seg-uncertain-note" style="display:none;padding:2rem 1rem;text-align:center;">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">⚠️</div>
+                <p
+                  style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:0.75rem;font-weight:600;">
+                  Image is Uncertain
+                </p>
+                <p style="font-size:0.9rem;color:var(--forest-mist);line-height:1.7;max-width:420px;margin:0 auto;">
+                  <strong style="color:var(--cream);">Note:</strong> The model could not confidently determine the flood
+                  status of this image.
+                  The area distribution chart is unavailable for uncertain predictions.
+                  Please select a clearer aerial image and try again.
+                </p>
+                <div style="margin-top:1.5rem;">
+                  <button class="btn btn-outline btn-sm" onclick="resetSegment()">↺ Try Another Image</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  setupDragDrop('clf-drop-zone', file => loadClassifyFile(file));
-  setupDragDrop('seg-drop-zone', file => loadSegmentFile(file));
+      </div>
+    </div>
+  </div>
 
-  // ════════════════════════════════════════════════════════════════
-  // CLASSIFICATION
-  // ════════════════════════════════════════════════════════════════
-  let clfFile = null;
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- MODAL — Choose Module                                            -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-overlay" onclick="modalOutsideClick(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 class="modal-title">Choose Analysis Type</h2>
+      <p class="modal-subtitle">What kind of prediction would you like to run?</p>
+      <div class="modal-options">
+        <div class="modal-option" onclick="openModule('classify')">
+          <div class="modal-option-icon">🌿</div>
+          <div class="modal-option-title">Classification</div>
+          <div class="modal-option-desc">Flooded or Not Flooded — with a confidence score</div>
+        </div>
+        <div class="modal-option" onclick="openModule('segment')">
+          <div class="modal-option-icon">🗺️</div>
+          <div class="modal-option-title">Segmentation</div>
+          <div class="modal-option-desc">Pixel-level map with class distribution chart</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  function onClassifyFile(event) {
-    const file = event.target.files[0];
-    if (file) loadClassifyFile(file);
-  }
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- JAVASCRIPT                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <script>
+    // ── API Base URL ────────────────────────────────────────────────
+    const API_BASE = '';  // same origin
 
-  function loadClassifyFile(file) {
-    clfFile = file;
-    hideError('clf');
-    resetClfResult();
+    // ── Page Router ─────────────────────────────────────────────────
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
 
-    const reader = new FileReader();
-    reader.onload = e => {
-      const preview = document.getElementById('clf-preview');
-      preview.src = e.target.result;
-      preview.classList.add('shown');
-      document.getElementById('clf-placeholder').style.display = 'none';
-      document.getElementById('clf-panels').style.display = 'grid';
-      document.getElementById('clf-btn-wrap').style.display = 'block';
-      document.getElementById('clf-empty').style.display = 'flex';
-      document.getElementById('clf-result').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function resetClfResult() {
-    document.getElementById('clf-result').style.display = 'none';
-    document.getElementById('clf-empty').style.display = 'flex';
-    document.getElementById('clf-spinner').classList.remove('shown');
-  }
-
-  function resetClassify() {
-    clfFile = null;
-    document.getElementById('clf-file-input').value = '';
-    document.getElementById('clf-preview').classList.remove('shown');
-    document.getElementById('clf-panels').style.display = 'none';
-    document.getElementById('clf-btn-wrap').style.display = 'none';
-    hideError('clf');
-    resetClfResult();
-  }
-
-  async function runClassification() {
-    if (!clfFile) return;
-
-    hideError('clf');
-    document.getElementById('clf-empty').style.display = 'none';
-    document.getElementById('clf-result').style.display = 'none';
-    document.getElementById('clf-spinner').classList.add('shown');
-    document.getElementById('clf-analyse-btn').disabled = true;
-
-    const form = new FormData();
-    form.append('image', clfFile);
-
-    try {
-      const res  = await fetch(API_BASE + '/api/classify', { method: 'POST', body: form });
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || 'Server returned an error.');
-      if (data.error) throw new Error(data.error);
-
-      showClassifyResult(data);
-    } catch (err) {
-      showError('clf', err.message || 'Failed to connect to the backend. Is Flask running?');
-      document.getElementById('clf-empty').style.display = 'flex';
-    } finally {
-      document.getElementById('clf-spinner').classList.remove('shown');
-      document.getElementById('clf-analyse-btn').disabled = false;
-    }
-  }
-
-  // Minimum confidence to trust a definitive verdict.
-  // Below this threshold the result is shown as "Uncertain" regardless of label.
-  const CLF_CONFIDENCE_THRESHOLD = 62;
-
-  function showClassifyResult(data) {
-    const confidence = data.confidence;      // 0–100
-    const isUncertain = confidence < CLF_CONFIDENCE_THRESHOLD;
-
-    const iconEl   = document.getElementById('clf-verdict-icon');
-    const badgeEl  = document.getElementById('clf-verdict-badge');
-    const confText = document.getElementById('clf-conf-text');
-    const confFill = document.getElementById('clf-conf-fill');
-
-    if (isUncertain) {
-      // Low confidence — override to Uncertain regardless of predicted label
-      iconEl.textContent  = '⚠️';
-      badgeEl.textContent = 'Uncertain';
-      badgeEl.className   = 'verdict-badge verdict-uncertain';
-    } else {
-      const isFlooded = data.flooded;
-      iconEl.textContent  = isFlooded ? '🌊' : '✅';
-      badgeEl.textContent = data.label;
-      badgeEl.className   = 'verdict-badge ' + (isFlooded ? 'verdict-flooded' : 'verdict-safe');
-    }
-
-    confText.textContent = confidence + '%';
-
-    // Colour fill by confidence level
-    confFill.classList.remove('low', 'mid', 'high');
-    if      (confidence >= 75) confFill.classList.add('high');
-    else if (confidence >= CLF_CONFIDENCE_THRESHOLD) confFill.classList.add('mid');
-    else                       confFill.classList.add('low');
-
-    // Animate bar after DOM update
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        confFill.style.width = confidence + '%';
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.remove('active');
       });
+      const activeLink = document.getElementById('nav-' + name);
+      if (activeLink) activeLink.classList.add('active');
+
+      // Close mobile nav
+      document.getElementById('navLinks').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Nav Toggle ──────────────────────────────────────────────────
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
     });
 
-    document.getElementById('clf-result').style.display = 'block';
-  }
+    // ── Modal ───────────────────────────────────────────────────────
+    function openModal() {
+      document.getElementById('modal-overlay').classList.add('open');
+    }
 
-  // ════════════════════════════════════════════════════════════════
-  // SEGMENTATION
-  // ════════════════════════════════════════════════════════════════
-  let segFile = null;
-  let segChart = null;
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+    }
 
-  function onSegmentFile(event) {
-    const file = event.target.files[0];
-    if (file) loadSegmentFile(file);
-  }
+    function modalOutsideClick(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
 
-  function loadSegmentFile(file) {
-    segFile = file;
-    hideError('seg');
-    document.getElementById('seg-results').style.display = 'none';
+    function openModule(type) {
+      closeModal();
+      showPage(type === 'classify' ? 'classify' : 'segment');
+    }
 
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById('seg-preview').src = e.target.result;
-      document.getElementById('seg-preview').classList.add('shown');
-      document.getElementById('seg-btn-wrap').style.display = 'block';
-    };
-    reader.readAsDataURL(file);
-  }
+    // ── Drag & Drop helpers ─────────────────────────────────────────
+    function setupDragDrop(zoneId, handler) {
+      const zone = document.getElementById(zoneId);
+      zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) handler(file);
+      });
+    }
 
-  function resetSegment() {
-    segFile = null;
-    document.getElementById('seg-file-input').value = '';
-    document.getElementById('seg-preview').classList.remove('shown');
-    document.getElementById('seg-preview-panels').style.display = 'none';
-    document.getElementById('seg-btn-wrap').style.display = 'none';
-    document.getElementById('seg-results').style.display = 'none';
-    hideError('seg');
-    if (segChart) { segChart.destroy(); segChart = null; }
-  }
+    setupDragDrop('clf-drop-zone', file => loadClassifyFile(file));
+    setupDragDrop('seg-drop-zone', file => loadSegmentFile(file));
 
-  async function runSegmentation() {
-    if (!segFile) return;
+    // ════════════════════════════════════════════════════════════════
+    // CLASSIFICATION
+    // ════════════════════════════════════════════════════════════════
+    let clfFile = null;
 
-    hideError('seg');
-    document.getElementById('seg-results').style.display = 'none';
-    document.getElementById('seg-preview-panels').style.display = 'grid';
-    document.getElementById('seg-spinner-panel').style.display = 'block';
-    document.getElementById('seg-analyse-btn').disabled = true;
+    function onClassifyFile(event) {
+      const file = event.target.files[0];
+      if (file) loadClassifyFile(file);
+    }
 
-    const form = new FormData();
-    form.append('image', segFile);
+    function loadClassifyFile(file) {
+      clfFile = file;
+      hideError('clf');
+      resetClfResult();
 
-    try {
-      const res  = await fetch(API_BASE + '/api/segment', { method: 'POST', body: form });
-      const data = await res.json();
+      const reader = new FileReader();
+      reader.onload = e => {
+        const preview = document.getElementById('clf-preview');
+        preview.src = e.target.result;
+        preview.classList.add('shown');
+        document.getElementById('clf-placeholder').style.display = 'none';
+        document.getElementById('clf-panels').style.display = 'grid';
+        document.getElementById('clf-btn-wrap').style.display = 'block';
+        document.getElementById('clf-empty').style.display = 'flex';
+        document.getElementById('clf-result').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
 
-      if (!res.ok) throw new Error(data.error || 'Server returned an error.');
-      if (data.error) throw new Error(data.error);
+    function resetClfResult() {
+      document.getElementById('clf-result').style.display = 'none';
+      document.getElementById('clf-empty').style.display = 'flex';
+      document.getElementById('clf-spinner').classList.remove('shown');
+    }
 
-      showSegmentResult(data);
-    } catch (err) {
-      showError('seg', err.message || 'Failed to connect to the backend. Is Flask running?');
+    function resetClassify() {
+      clfFile = null;
+      document.getElementById('clf-file-input').value = '';
+      document.getElementById('clf-preview').classList.remove('shown');
+      document.getElementById('clf-panels').style.display = 'none';
+      document.getElementById('clf-btn-wrap').style.display = 'none';
+      hideError('clf');
+      resetClfResult();
+    }
+
+    async function runClassification() {
+      if (!clfFile) return;
+
+      hideError('clf');
+      document.getElementById('clf-empty').style.display = 'none';
+      document.getElementById('clf-result').style.display = 'none';
+      document.getElementById('clf-spinner').classList.add('shown');
+      document.getElementById('clf-analyse-btn').disabled = true;
+
+      const form = new FormData();
+      form.append('image', clfFile);
+
+      try {
+        const res = await fetch(API_BASE + '/api/classify', { method: 'POST', body: form });
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Server returned an error.');
+        if (data.error) throw new Error(data.error);
+
+        showClassifyResult(data);
+      } catch (err) {
+        showError('clf', err.message || 'Failed to connect to the backend. Is Flask running?');
+        document.getElementById('clf-empty').style.display = 'flex';
+      } finally {
+        document.getElementById('clf-spinner').classList.remove('shown');
+        document.getElementById('clf-analyse-btn').disabled = false;
+      }
+    }
+
+    // Minimum confidence to trust a definitive verdict.
+    // Below this threshold the result is shown as "Uncertain" regardless of label.
+    const CLF_CONFIDENCE_THRESHOLD = 62;
+
+    function showClassifyResult(data) {
+      const confidence = data.confidence;      // 0–100
+      const isUncertain = confidence < CLF_CONFIDENCE_THRESHOLD;
+
+      const iconEl = document.getElementById('clf-verdict-icon');
+      const badgeEl = document.getElementById('clf-verdict-badge');
+      const confText = document.getElementById('clf-conf-text');
+      const confFill = document.getElementById('clf-conf-fill');
+
+      if (isUncertain) {
+        // Low confidence — override to Uncertain regardless of predicted label
+        iconEl.textContent = '⚠️';
+        badgeEl.textContent = 'Uncertain';
+        badgeEl.className = 'verdict-badge verdict-uncertain';
+      } else {
+        const isFlooded = data.flooded;
+        iconEl.textContent = isFlooded ? '🌊' : '✅';
+        badgeEl.textContent = data.label;
+        badgeEl.className = 'verdict-badge ' + (isFlooded ? 'verdict-flooded' : 'verdict-safe');
+      }
+
+      confText.textContent = confidence + '%';
+
+      // Colour fill by confidence level
+      confFill.classList.remove('low', 'mid', 'high');
+      if (confidence >= 75) confFill.classList.add('high');
+      else if (confidence >= CLF_CONFIDENCE_THRESHOLD) confFill.classList.add('mid');
+      else confFill.classList.add('low');
+
+      // Animate bar after DOM update
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          confFill.style.width = confidence + '%';
+        });
+      });
+
+      document.getElementById('clf-result').style.display = 'block';
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // SEGMENTATION
+    // ════════════════════════════════════════════════════════════════
+    let segFile = null;
+    let segChart = null;
+
+    function onSegmentFile(event) {
+      const file = event.target.files[0];
+      if (file) loadSegmentFile(file);
+    }
+
+    function loadSegmentFile(file) {
+      segFile = file;
+      hideError('seg');
+      document.getElementById('seg-results').style.display = 'none';
+
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('seg-preview').src = e.target.result;
+        document.getElementById('seg-preview').classList.add('shown');
+        document.getElementById('seg-btn-wrap').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetSegment() {
+      segFile = null;
+      document.getElementById('seg-file-input').value = '';
+      document.getElementById('seg-preview').classList.remove('shown');
       document.getElementById('seg-preview-panels').style.display = 'none';
-    } finally {
-      document.getElementById('seg-spinner-panel').style.display = 'none';
-      document.getElementById('seg-analyse-btn').disabled = false;
-    }
-  }
-
-  // Class colour map matching backend SEG_COLORS (BGR→RGB converted)
-  const CLASS_COLORS = {
-    'Background':          '#37474f',
-    'Building-Flooded':    '#ff3d5a',
-    'Building-Non-Flood':  '#ff9800',
-    'Road-Flooded':        '#e040fb',
-    'Road-Non-Flood':      '#7c4dff',
-    'Water':               '#00e5ff',
-    'Tree':                '#00e676',
-    'Vehicle':             '#ffd600',
-    'Pool':                '#40c4ff',
-    'Grass':               '#69f0ae',
-  };
-
-  const CLASS_DISPLAY = {
-    'Background':          '⬛ Background',
-    'Building-Flooded':    '🔴 Building-Flooded',
-    'Building-Non-Flood':  '🟠 Building-Non-Flood',
-    'Road-Flooded':        '🟣 Road-Flooded',
-    'Road-Non-Flood':      '🔵 Road-Non-Flood',
-    'Water':               '💧 Water',
-    'Tree':                '🌳 Tree',
-    'Vehicle':             '🚗 Vehicle',
-    'Pool':                '🏊 Pool',
-    'Grass':               '🌿 Grass',
-  };
-
-  function showSegmentResult(data) {
-    const verdict = data.verdict;  // "FLOODED" | "NOT_FLOODED" | "UNCERTAIN"
-
-    // Segmented Image
-    const imgEl = document.getElementById('seg-output-img');
-    if (verdict === 'UNCERTAIN') {
-      // Show original unmasked image if uncertain
-      imgEl.src = document.getElementById('seg-preview').src;
-    } else {
-      // Show masked output
-      imgEl.src = 'data:image/png;base64,' + data.mask_b64;
-    }
-
-    // Verdict badge
-    const badgeEl = document.getElementById('seg-verdict-badge');
-    if (verdict === 'FLOODED') {
-      badgeEl.textContent = '🌊 Area Flooded (' + data.flooded_pct + '% flooded coverage)';
-      badgeEl.className   = 'verdict-badge verdict-flooded';
-    } else if (verdict === 'NOT_FLOODED') {
-      badgeEl.textContent = '✅ Area Not Flooded (' + data.safe_pct + '% safe coverage)';
-      badgeEl.className   = 'verdict-badge verdict-safe';
-    } else {
-      badgeEl.textContent = '⚠️ Uncertain — Mixed Signals';
-      badgeEl.className   = 'verdict-badge verdict-uncertain';
-    }
-
-    // Chart vs Uncertain Note
-    const chartWrap    = document.getElementById('seg-chart-wrap');
-    const uncertainNote = document.getElementById('seg-uncertain-note');
-
-    if (verdict === 'UNCERTAIN') {
-      chartWrap.style.display     = 'none';
-      uncertainNote.style.display = 'block';
-      // Destroy any previous chart so it doesn't linger
+      document.getElementById('seg-btn-wrap').style.display = 'none';
+      document.getElementById('seg-results').style.display = 'none';
+      hideError('seg');
       if (segChart) { segChart.destroy(); segChart = null; }
-    } else {
-      chartWrap.style.display     = 'block';
-      uncertainNote.style.display = 'none';
-      buildSegChart(data.class_pcts);
     }
 
-    document.getElementById('seg-results').style.display = 'block';
-    document.getElementById('seg-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+    async function runSegmentation() {
+      if (!segFile) return;
 
-  function buildSegChart(classPcts) {
-    const canvas = document.getElementById('seg-chart');
+      hideError('seg');
+      document.getElementById('seg-results').style.display = 'none';
+      document.getElementById('seg-preview-panels').style.display = 'grid';
+      document.getElementById('seg-spinner-panel').style.display = 'block';
+      document.getElementById('seg-analyse-btn').disabled = true;
 
-    if (segChart) { segChart.destroy(); segChart = null; }
+      const form = new FormData();
+      form.append('image', segFile);
 
-    // Filter to non-zero classes only, sort descending
-    const entries = Object.entries(classPcts)
-      .filter(([, v]) => v > 0)
-      .sort((a, b) => b[1] - a[1]);
+      try {
+        const res = await fetch(API_BASE + '/api/segment', { method: 'POST', body: form });
+        const data = await res.json();
 
-    const labels  = entries.map(([k]) => CLASS_DISPLAY[k] || k);
-    const values  = entries.map(([, v]) => v);
-    const colors  = entries.map(([k]) => CLASS_COLORS[k] || '#888');
-    const borders = colors.map(c => c);
+        if (!res.ok) throw new Error(data.error || 'Server returned an error.');
+        if (data.error) throw new Error(data.error);
 
-    segChart = new Chart(canvas, {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [{
-          label: 'Area Coverage (%)',
-          data: values,
-          backgroundColor: colors.map(c => c + 'cc'),
-          borderColor: borders,
-          borderWidth: 1.5,
-          borderRadius: 4,
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        indexAxis: 'y',
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-              color: '#a8ccb5',
-              font: { family: "'Lora', serif", size: 11 },
-              padding: 16,
-              usePointStyle: true,
-              generateLabels: (chart) => {
-                return entries.map((entry, i) => ({
-                  text: entry[0],
-                  fontColor: '#a8ccb5',
-                  fillStyle: chart.data.datasets[0].backgroundColor[i],
-                  strokeStyle: chart.data.datasets[0].borderColor[i],
-                  lineWidth: 1.5,
-                  hidden: false,
-                  index: i,
-                }));
+        showSegmentResult(data);
+      } catch (err) {
+        showError('seg', err.message || 'Failed to connect to the backend. Is Flask running?');
+        document.getElementById('seg-preview-panels').style.display = 'none';
+      } finally {
+        document.getElementById('seg-spinner-panel').style.display = 'none';
+        document.getElementById('seg-analyse-btn').disabled = false;
+      }
+    }
+
+    // Class colour map matching backend SEG_COLORS (BGR→RGB converted)
+    const CLASS_COLORS = {
+      'Background': '#37474f',
+      'Building-Flooded': '#ff3d5a',
+      'Building-Non-Flood': '#ff9800',
+      'Road-Flooded': '#e040fb',
+      'Road-Non-Flood': '#7c4dff',
+      'Water': '#00e5ff',
+      'Tree': '#00e676',
+      'Vehicle': '#ffd600',
+      'Pool': '#40c4ff',
+      'Grass': '#69f0ae',
+    };
+
+    const CLASS_DISPLAY = {
+      'Background': '⬛ Background',
+      'Building-Flooded': '🔴 Building-Flooded',
+      'Building-Non-Flood': '🟠 Building-Non-Flood',
+      'Road-Flooded': '🟣 Road-Flooded',
+      'Road-Non-Flood': '🔵 Road-Non-Flood',
+      'Water': '💧 Water',
+      'Tree': '🌳 Tree',
+      'Vehicle': '🚗 Vehicle',
+      'Pool': '🏊 Pool',
+      'Grass': '🌿 Grass',
+    };
+
+    function showSegmentResult(data) {
+      const verdict = data.verdict;  // "FLOODED" | "NOT_FLOODED" | "UNCERTAIN"
+
+      // Segmented Image
+      const imgEl = document.getElementById('seg-output-img');
+      if (verdict === 'UNCERTAIN') {
+        // Show original unmasked image if uncertain
+        imgEl.src = document.getElementById('seg-preview').src;
+      } else {
+        // Show masked output
+        imgEl.src = 'data:image/png;base64,' + data.mask_b64;
+      }
+
+      // Verdict badge
+      const badgeEl = document.getElementById('seg-verdict-badge');
+      if (verdict === 'FLOODED') {
+        badgeEl.textContent = '🌊 Area Flooded (' + data.flooded_pct + '% flooded coverage)';
+        badgeEl.className = 'verdict-badge verdict-flooded';
+      } else if (verdict === 'NOT_FLOODED') {
+        badgeEl.textContent = '✅ Area Not Flooded (' + data.safe_pct + '% safe coverage)';
+        badgeEl.className = 'verdict-badge verdict-safe';
+      } else {
+        badgeEl.textContent = '⚠️ Uncertain — Mixed Signals';
+        badgeEl.className = 'verdict-badge verdict-uncertain';
+      }
+
+      // Chart vs Uncertain Note
+      const chartWrap = document.getElementById('seg-chart-wrap');
+      const uncertainNote = document.getElementById('seg-uncertain-note');
+
+      if (verdict === 'UNCERTAIN') {
+        chartWrap.style.display = 'none';
+        uncertainNote.style.display = 'block';
+        // Destroy any previous chart so it doesn't linger
+        if (segChart) { segChart.destroy(); segChart = null; }
+      } else {
+        chartWrap.style.display = 'block';
+        uncertainNote.style.display = 'none';
+        buildSegChart(data.class_pcts);
+      }
+
+      document.getElementById('seg-results').style.display = 'block';
+      document.getElementById('seg-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function buildSegChart(classPcts) {
+      const canvas = document.getElementById('seg-chart');
+
+      if (segChart) { segChart.destroy(); segChart = null; }
+
+      // Filter to non-zero classes only, sort descending
+      const entries = Object.entries(classPcts)
+        .filter(([, v]) => v > 0)
+        .sort((a, b) => b[1] - a[1]);
+
+      const labels = entries.map(([k]) => CLASS_DISPLAY[k] || k);
+      const values = entries.map(([, v]) => v);
+      const colors = entries.map(([k]) => CLASS_COLORS[k] || '#888');
+      const borders = colors.map(c => c);
+
+      segChart = new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Area Coverage (%)',
+            data: values,
+            backgroundColor: colors.map(c => c + 'cc'),
+            borderColor: borders,
+            borderWidth: 1.5,
+            borderRadius: 4,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                color: '#a8ccb5',
+                font: { family: "'Lora', serif", size: 11 },
+                padding: 16,
+                usePointStyle: true,
+                generateLabels: (chart) => {
+                  return entries.map((entry, i) => ({
+                    text: entry[0],
+                    fontColor: '#a8ccb5',
+                    fillStyle: chart.data.datasets[0].backgroundColor[i],
+                    strokeStyle: chart.data.datasets[0].borderColor[i],
+                    lineWidth: 1.5,
+                    hidden: false,
+                    index: i,
+                  }));
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: '#142b1c',
+              borderColor: 'rgba(74,150,96,0.3)',
+              borderWidth: 1,
+              titleColor: '#f5f0e6',
+              bodyColor: '#a8ccb5',
+              titleFont: { family: "'Playfair Display', serif", size: 13 },
+              bodyFont: { family: "'Lora', serif", size: 12 },
+              callbacks: {
+                label: ctx => ` ${ctx.parsed.x.toFixed(1)}% of image area`
               }
             }
           },
-          tooltip: {
-            backgroundColor: '#142b1c',
-            borderColor: 'rgba(74,150,96,0.3)',
-            borderWidth: 1,
-            titleColor: '#f5f0e6',
-            bodyColor: '#a8ccb5',
-            titleFont: { family: "'Playfair Display', serif", size: 13 },
-            bodyFont: { family: "'Lora', serif", size: 12 },
-            callbacks: {
-              label: ctx => ` ${ctx.parsed.x.toFixed(1)}% of image area`
+          scales: {
+            x: {
+              grid: { color: 'rgba(74,150,96,0.08)' },
+              ticks: {
+                color: '#a8ccb5',
+                font: { family: "'Lora', serif", size: 11 },
+                callback: v => v + '%'
+              },
+              border: { color: 'rgba(74,150,96,0.15)' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: '#c2dac9',
+                font: { family: "'Lora', serif", size: 11 }
+              },
+              border: { color: 'rgba(74,150,96,0.15)' }
             }
           }
-        },
-        scales: {
-          x: {
-            grid: { color: 'rgba(74,150,96,0.08)' },
-            ticks: {
-              color: '#a8ccb5',
-              font: { family: "'Lora', serif", size: 11 },
-              callback: v => v + '%'
-            },
-            border: { color: 'rgba(74,150,96,0.15)' }
-          },
-          y: {
-            grid: { display: false },
-            ticks: {
-              color: '#c2dac9',
-              font: { family: "'Lora', serif", size: 11 }
-            },
-            border: { color: 'rgba(74,150,96,0.15)' }
-          }
         }
-      }
+      });
+    }
+
+    // ── Error Handling ───────────────────────────────────────────────
+    function showError(prefix, msg) {
+      const el = document.getElementById(prefix + '-error');
+      document.getElementById(prefix + '-error-text').textContent = msg;
+      el.classList.add('shown');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideError(prefix) {
+      document.getElementById(prefix + '-error').classList.remove('shown');
+    }
+
+    // ── Keyboard: Esc closes modal ──────────────────────────────────
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
     });
-  }
-
-  // ── Error Handling ───────────────────────────────────────────────
-  function showError(prefix, msg) {
-    const el = document.getElementById(prefix + '-error');
-    document.getElementById(prefix + '-error-text').textContent = msg;
-    el.classList.add('shown');
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function hideError(prefix) {
-    document.getElementById(prefix + '-error').classList.remove('shown');
-  }
-
-  // ── Keyboard: Esc closes modal ──────────────────────────────────
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
-  });
-</script>
+  </script>
 
 </body>
+
 </html>

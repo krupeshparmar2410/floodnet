@@ -190,7 +190,7 @@ def predict_segmentation(img_bgr):
         low_conf = avg_conf < CONF_THRESHOLD
         high_variation = conf_std > CONF_STD_THRESHOLD
         ambiguous = FLOOD_LOW <= flooded_pct <= FLOOD_HIGH
-
+    
         if low_conf or high_variation or ambiguous:
             verdict = "UNCERTAIN"
         elif flooded_pct > FLOOD_HIGH:
