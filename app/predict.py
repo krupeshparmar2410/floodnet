@@ -68,8 +68,8 @@ def predict_classification(img_bgr):
         proba = TASK1_MODEL.predict_proba([feat])[0]
 
         # ✅ UNCERTAINTY LOGIC
-        CONF_THRESHOLD = 0.65  # Best value: Requires top prediction to be > 65%
-        DIFF_THRESHOLD = 0.20  # Best value: Requires clear gap between top 2 classes (e.g., 60/40 is the minimum)
+        CONF_THRESHOLD = 0.80  # Stricter: Requires top prediction to be > 80%
+        DIFF_THRESHOLD = 0.50  # Stricter: Requires a very clear gap (e.g., 75/25 minimum gap)
         
         max_prob = float(np.max(proba))
         
